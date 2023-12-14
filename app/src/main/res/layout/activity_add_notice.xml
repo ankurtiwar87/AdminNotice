@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="10dp"
+    android:fillViewport="true"
+
     tools:context=".Activities.AddNotice">
 
 
@@ -57,21 +58,19 @@
             android:id="@+id/text1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_10sdp"
             android:text="SELECT IMAGE"
-            android:textColor="@color/purple_200"
+            android:textAllCaps="true"
+            android:textColor="@color/black"
             android:textSize="@dimen/_15sdp"
             android:textStyle="bold"
-            android:textAllCaps="true"
-            android:layout_margin="@dimen/_10sdp"
-            app:layout_constraintTop_toBottomOf="@id/input2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/input2" />
 
         <ImageView
             android:id="@+id/noticeImage"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_250sdp"
+            android:layout_height="@dimen/_150sdp"
             android:layout_margin="@dimen/_15sdp"
             android:elevation="@dimen/_10sdp"
             android:padding="@dimen/_10sdp"
@@ -85,16 +84,14 @@
             android:id="@+id/text2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_10sdp"
             android:text="SELECT YEAR"
-            android:textColor="@color/purple_200"
+            android:textAllCaps="true"
+            android:textColor="@color/black"
             android:textSize="@dimen/_15sdp"
             android:textStyle="bold"
-            android:layout_margin="@dimen/_10sdp"
-            android:textAllCaps="true"
-            app:layout_constraintTop_toBottomOf="@id/noticeImage"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/noticeImage" />
 
         <Spinner
             android:id="@+id/spinner"
@@ -110,16 +107,14 @@
             android:id="@+id/text3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_10sdp"
             android:text="Upload Document"
-            android:textColor="@color/purple_200"
+            android:textAllCaps="true"
+            android:textColor="@color/black"
             android:textSize="@dimen/_15sdp"
             android:textStyle="bold"
-            android:textAllCaps="true"
-            android:layout_margin="@dimen/_10sdp"
-            app:layout_constraintTop_toBottomOf="@id/spinner"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/spinner" />
 
 
         <Button
@@ -140,14 +135,16 @@
         <Button
             android:id="@+id/uploadNotice"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/_45sdp"
             android:layout_margin="@dimen/_15sdp"
             android:text="UPLOAD NOTICE"
-            android:textSize="@dimen/_17sdp"
+            android:textSize="16sp"
+            app:cornerRadius="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/chooseFileButton" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:layout_editor_absoluteY="627dp" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
