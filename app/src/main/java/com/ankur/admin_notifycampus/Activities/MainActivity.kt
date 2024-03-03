@@ -1,11 +1,11 @@
-package com.ankur.admin_notifycampus
+package com.ankur.admin_notifycampus.Activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import com.ankur.admin_notifycampus.Activities.AddFaculty
-import com.ankur.admin_notifycampus.Activities.AddNotice
+import com.ankur.admin_notifycampus.R
+import com.ankur.admin_notifycampus.Sessions.SessionTemplate
 import com.ankur.admin_notifycampus.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
@@ -18,6 +18,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         binding.addNotice.setOnClickListener(this)
         binding.addFaculty.setOnClickListener(this)
+        binding.deleteNotice.setOnClickListener(this)
+        binding.deleteFaculty.setOnClickListener(this)
 
 
     }
@@ -27,12 +29,20 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         if (v != null) {
             when(v.id){
 
-                R.id.add_notice->{
+                R.id.add_notice ->{
                     val intent = Intent(this,AddNotice::class.java)
                     startActivity(intent)
                 }
-                R.id.addFaculty->{
+                R.id.addFaculty ->{
                     val intent = Intent(this,AddFaculty::class.java)
+                    startActivity(intent)
+                }
+                R.id.deleteNotice->{
+                    val intent=Intent(this,SessionTemplate::class.java)
+                    startActivity(intent)
+                }
+                R.id.deleteFaculty->{
+                    val intent =Intent(this,SessionTemplate::class.java)
                     startActivity(intent)
                 }
 

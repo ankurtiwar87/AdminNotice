@@ -1,11 +1,29 @@
 <resources>
     <string name="app_name">Admin_notifycampus</string>
+    <string name="download_icon_description">Download</string>
 
-    <string-array name="Year">
+    <string-array name="session">
+        <item>2019-2023</item>
+        <item>2020-2024</item>
+        <item>2021-2025</item>
+        <item>2022-2026</item>
+        <item>2023-2027</item>
+        <item>2024-2028</item>
+        <item>2025-2029</item>
+    </string-array>
+
+    <string-array name="year">
         <item>1</item>
         <item>2</item>
         <item>3</item>
         <item>4</item>
+    </string-array>
+
+    <string-array name="department">
+        <item>Aryabhatt Block</item>
+        <item>Raman Block</item>
+        <item>Kalpana Chawala Bloack</item>
+        <item>Bhabha Block</item>
     </string-array>
 
 </resources>

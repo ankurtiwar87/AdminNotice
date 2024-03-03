@@ -4,8 +4,11 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.Dialog
 import android.content.Intent
+import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
+import android.os.Environment
+import android.provider.MediaStore
 import android.provider.OpenableColumns
 import android.view.View
 import android.widget.AdapterView
@@ -13,7 +16,9 @@ import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.FileProvider
 import androidx.lifecycle.lifecycleScope
 import com.ankur.admin_notifycampus.Models.NoticeModel
 import com.ankur.admin_notifycampus.R
@@ -25,6 +30,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
+import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -37,7 +43,8 @@ class AddNotice : AppCompatActivity() {
 //    This URI is for Image from Gallery
     private var coverImage: Uri? = null
 
-//    This is for the firebase storage url
+
+    //    This is for the firebase storage url
     private var coverImageUrl:String ?= ""
     private var docUrl:String ?= ""
 
@@ -81,13 +88,11 @@ private val chooseFileButton by lazy { findViewById<Button>(R.id.chooseFileButto
         dialog.setCancelable(false)
 
         //Spinner setUp
-        val category = resources.getStringArray(R.array.Year)
+        val category = resources.getStringArray(R.array.session)
 
-        if (binding.spinner!=null) {
-            val adapter = ArrayAdapter(this,android.R.layout.simple_spinner_dropdown_item,category)
-            binding.spinner.adapter=adapter
+        val adapter = ArrayAdapter(this,android.R.layout.simple_spinner_dropdown_item,category)
+        binding.spinner.adapter=adapter
 
-        }
         binding.spinner.onItemSelectedListener=object: AdapterView.OnItemSelectedListener{
             override fun onItemSelected(
                 parent: AdapterView<*>?,
@@ -105,10 +110,24 @@ private val chooseFileButton by lazy { findViewById<Button>(R.id.chooseFileButto
         }
 
          // Open the Gallery on click
+//        binding.noticeImage.setOnClickListener {
+//            val intent = Intent("android.intent.action.GET_CONTENT")
+//            intent.type="image/*"
+//            launchGalleyActivity.launch(intent)
+//        }
+
         binding.noticeImage.setOnClickListener {
-            val intent = Intent("android.intent.action.GET_CONTENT")
-            intent.type="image/*"
-            launchGalleyActivity.launch(intent)
+            val options = arrayOf("Open Gallery", "Take Photo")
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle("Choose an option")
+            builder.setItems(options) { dialog, which ->
+                when (which) {
+                    0 -> openGallery()
+                    1 -> openCamera()
+                }
+                dialog.dismiss()
+            }
+            builder.show()
         }
         binding.chooseFileButton.setOnClickListener{
             val intent = Intent(Intent.ACTION_GET_CONTENT)
@@ -123,6 +142,52 @@ private val chooseFileButton by lazy { findViewById<Button>(R.id.chooseFileButto
 
 
 
+    }
+
+
+    private fun openCamera() {
+        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        // Ensure that there's a camera app available
+        if (intent.resolveActivity(packageManager) != null) {
+            // Create a file to save the image
+            val photoFile: File? = createImageFile()
+            photoFile?.let {
+                coverImage = FileProvider.getUriForFile(this, "com.ankur.admin_notifycampus.provider", it)
+                intent.putExtra(MediaStore.EXTRA_OUTPUT, coverImage)
+                val REQUEST_IMAGE_CAPTURE=121
+                startActivityForResult(intent, REQUEST_IMAGE_CAPTURE)
+            }
+        } else {
+            Toast.makeText(this, "No camera app found", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun createImageFile(): File? {
+        // Create an image file name
+        val timeStamp: String = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
+        val storageDir: File? = getExternalFilesDir(Environment.DIRECTORY_PICTURES)
+        val imageFileName = "JPEG_${timeStamp}_"
+        return File.createTempFile(imageFileName, ".jpg", storageDir)
+    }
+
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        val REQUEST_IMAGE_CAPTURE=121
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == Activity.RESULT_OK) {
+            // Use the photoUri to set the image in the ImageView
+            coverImage?.let { uri ->
+                binding.noticeImage.setImageURI(uri)
+            }
+        }
+    }
+
+
+    private fun openGallery() {
+
+        val intent = Intent(Intent.ACTION_GET_CONTENT)
+        intent.type = "image/*"
+        launchGalleyActivity.launch(intent)
     }
 
     private fun validateData() {
@@ -168,9 +233,11 @@ private val chooseFileButton by lazy { findViewById<Button>(R.id.chooseFileButto
 
         dialog.show()
 
+//        for date
         val callForDate = Calendar.getInstance()
-        val currentDate = SimpleDateFormat("dd-MM--yy")
+        val currentDate = SimpleDateFormat("dd-MM-yy")
         val date = currentDate.format(callForDate.time)
+//        for time
         val callForTime = Calendar.getInstance()
         val currentTime = SimpleDateFormat("hh:mm a")
         val time = currentTime.format(callForTime.time)
@@ -182,12 +249,13 @@ private val chooseFileButton by lazy { findViewById<Button>(R.id.chooseFileButto
 
         val data = NoticeModel(
             id,
-            binding.title.text.toString(),
-            binding.description.text.toString(),
-            coverImageUrl,
-            docUrl,
-            date,
-            time
+            title = binding.title.text.toString(),
+            desc = binding.description.text.toString(),
+            imgUrl = coverImageUrl,
+           docUrl= docUrl,
+            date =date,
+           time= time,
+           collectionName =  spinnerYear
 
         )
 
@@ -197,7 +265,7 @@ private val chooseFileButton by lazy { findViewById<Button>(R.id.chooseFileButto
             withContext(Dispatchers.Main){
                 dialog.dismiss()
                 binding.chooseFileButton.text="CHOOSE FILE"
-                binding.noticeImage.setImageResource(R.drawable.paceholder)
+                binding.noticeImage.setImageResource(R.drawable.placeholder)
                 binding.title.text=null
                 binding.description.text=null
                 Toast.makeText(applicationContext, "Notice Uploaded", Toast.LENGTH_SHORT).show()
@@ -226,7 +294,7 @@ private val chooseFileButton by lazy { findViewById<Button>(R.id.chooseFileButto
 
             }
             dialog.dismiss()
-            binding.chooseFileButton.text="Document Saved"
+            binding.chooseFileButton.text="$fileName Uploaded"
             // Handle the download URL as needed
         }.addOnFailureListener { exception ->
             // Handle unsuccessful uploads

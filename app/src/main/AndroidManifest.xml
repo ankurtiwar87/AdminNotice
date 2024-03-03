@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-<uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -13,7 +13,33 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Admin_notifycampus"
         tools:targetApi="31">
-
+        <activity
+            android:name=".Sessions.Session28"
+            android:exported="false" />
+        <activity
+            android:name=".Sessions.Session27"
+            android:exported="false" />
+        <activity
+            android:name=".Sessions.SessionTemplate"
+            android:exported="false" />
+        <activity
+            android:name=".Sessions.Session26"
+            android:exported="false" />
+        <activity
+            android:name=".Sessions.Session25"
+            android:exported="false" />
+        <activity
+            android:name=".Sessions.Session24"
+            android:exported="false" />
+        <activity
+            android:name=".Sessions.Session"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.RemoveFaculty"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.DeleteNotice"
+            android:exported="false" />
         <activity
             android:name=".Activities.AddFaculty"
             android:exported="false" />
@@ -21,7 +47,7 @@
             android:name=".Activities.AddNotice"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Activities.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,6 +55,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.ankur.admin_notifycampus.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
     </application>
 
 </manifest>

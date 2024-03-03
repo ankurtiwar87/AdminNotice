@@ -1,115 +1,329 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/_20sdp"
-    tools:context=".MainActivity">
+    tools:context=".Activities.MainActivity">
 
-    <LinearLayout
+
+    <GridLayout
+        android:id="@+id/gridLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:alignmentMode="alignMargins"
+        android:columnCount="2"
+        android:columnOrderPreserved="false"
         android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_margin="@dimen/_5sdp"
-        >
+        android:padding="16dp"
+        android:rowCount="2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/add_notice"
-            android:layout_width="@dimen/_130sdp"
-            android:layout_height="@dimen/_150sdp"
-            android:layout_margin="@dimen/_10sdp"
-            android:elevation="@dimen/_5sdp"
-            >
+        <!-- CardView 1 -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_margin="8dp"
+            android:backgroundTint="@color/white2"
+            android:elevation="4dp"
+            android:padding="16dp"
+            android:radius="8dp"
+            app:cardCornerRadius="@dimen/_15sdp">
 
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:gravity="center"
-                >
+                android:layout_height="match_parent">
 
-                <ImageView
-                    android:layout_width="@dimen/_64sdp"
-                    android:layout_height="@dimen/_64sdp"
-                    android:background="@drawable/circle_1"
-                    android:src="@drawable/ic_notice"
-                    android:padding="@dimen/_15sdp"
-                    />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_2sdp"
-                    android:background="@color/lightGrey"
-                    android:layout_marginTop="@dimen/_10sdp"
-
-                    />
-                <TextView
-                    android:layout_width="match_parent"
+                <LinearLayout
+                    android:id="@+id/add_notice"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Upload Notice"
-                    android:textColor="@color/textColor"
-                    android:gravity="center"
-                    android:textStyle="bold"
-                    android:textSize="@dimen/_14sdp"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    />
+                    android:layout_margin="@dimen/_10sdp"
+                    android:backgroundTint="@color/white2"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.5">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="@dimen/_5sdp">
+
+                        <ImageView
+                            android:layout_width="@dimen/_64sdp"
+                            android:layout_height="@dimen/_64sdp"
+                            android:background="@drawable/circle_1"
+                            android:padding="@dimen/_15sdp"
+                            android:src="@drawable/ic_notice" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_2sdp"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:background="@color/lightGrey"
+
+                            />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:gravity="center"
+                            android:text="Upload Notice"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/_14sdp"
+                            android:textStyle="bold" />
 
 
-            </LinearLayout>
+                    </LinearLayout>
 
-        </com.google.android.material.card.MaterialCardView>
+                </LinearLayout>
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/addFaculty"
-            android:layout_width="@dimen/_130sdp"
-            android:layout_height="@dimen/_150sdp"
-            android:layout_margin="@dimen/_10sdp"
-            android:elevation="@dimen/_5sdp"
-            >
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <!-- Your CardView content here -->
 
-            <LinearLayout
+        </androidx.cardview.widget.CardView>
+
+        <!-- CardView 2 -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_margin="8dp"
+            android:backgroundTint="@color/white2"
+            android:elevation="4dp"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:padding="16dp"
+            android:radius="8dp"
+            app:cardCornerRadius="@dimen/_15sdp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:gravity="center"
-                >
+                android:layout_height="match_parent">
 
-                <ImageView
-                    android:layout_width="@dimen/_64sdp"
-                    android:layout_height="@dimen/_64sdp"
-                    android:background="@drawable/circle_2"
-                    android:src="@drawable/ic_person"
-                    android:padding="@dimen/_15sdp"
-                    />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_2sdp"
-                    android:background="@color/lightGrey"
-                    android:layout_marginTop="@dimen/_10sdp"
-
-                    />
-                <TextView
-                    android:layout_width="match_parent"
+                <LinearLayout
+                    android:id="@+id/addFaculty"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Add Faculty"
-                    android:textColor="@color/textColor"
-                    android:gravity="center"
-                    android:textStyle="bold"
-                    android:textSize="@dimen/_14sdp"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    />
+                    android:layout_margin="@dimen/_10sdp"
+                    android:backgroundTint="@color/white2"
+
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.5">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="@dimen/_5sdp">
+
+                        <ImageView
+                            android:layout_width="@dimen/_64sdp"
+                            android:layout_height="@dimen/_64sdp"
+                            android:background="@drawable/circle_2"
+                            android:padding="@dimen/_15sdp"
+                            android:src="@drawable/ic_person" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_2sdp"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:background="@color/lightGrey"
+
+                            />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:gravity="center"
+                            android:text="Add Faculty"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/_14sdp"
+                            android:textStyle="bold" />
 
 
-            </LinearLayout>
+                    </LinearLayout>
 
-        </com.google.android.material.card.MaterialCardView>
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <!-- CardView 3 -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_margin="8dp"
+            android:backgroundTint="@color/white2"
+            android:elevation="4dp"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:padding="16dp"
+            android:radius="8dp"
+            app:cardCornerRadius="@dimen/_15sdp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:id="@+id/deleteNotice"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_10sdp"
+                    android:backgroundTint="@color/white2"
+                    android:elevation="@dimen/_5sdp"
+                    app:cardCornerRadius="@dimen/_15sdp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.5">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="@dimen/_5sdp">
+
+                        <ImageView
+                            android:layout_width="@dimen/_64sdp"
+                            android:layout_height="@dimen/_64sdp"
+                            android:background="@drawable/circle_3"
+                            android:padding="@dimen/_15sdp"
+                            android:src="@drawable/ic_delete" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_2sdp"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:background="@color/lightGrey"
+
+                            />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:gravity="center"
+                            android:text="Delete Notice"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/_14sdp"
+                            android:textStyle="bold" />
 
 
+                    </LinearLayout>
 
-    </LinearLayout>
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <!-- CardView 4 -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_margin="8dp"
+            android:backgroundTint="@color/white2"
+            android:elevation="4dp"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:padding="16dp"
+            android:radius="8dp"
+            app:cardCornerRadius="@dimen/_15sdp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:id="@+id/deleteFaculty"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_10sdp"
+                    android:backgroundTint="@color/white2"
+                    android:elevation="@dimen/_5sdp"
+                    app:cardCornerRadius="@dimen/_15sdp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.5">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="@dimen/_5sdp">
+
+                        <ImageView
+                            android:layout_width="@dimen/_64sdp"
+                            android:layout_height="@dimen/_64sdp"
+                            android:background="@drawable/circle_4"
+                            android:padding="@dimen/_15sdp"
+                            android:src="@drawable/ic_delete" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_2sdp"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:background="@color/lightGrey"
+
+                            />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:gravity="center"
+                            android:text="Remove Faculty"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/_14sdp"
+                            android:textStyle="bold" />
 
 
-</LinearLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+    </GridLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+

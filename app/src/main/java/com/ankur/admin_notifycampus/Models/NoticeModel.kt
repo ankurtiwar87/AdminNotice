@@ -8,5 +8,6 @@ data class NoticeModel(
     val imgUrl:String?=null,
     val docUrl:String?=null,
     val date:String?=null,
-    val time:String?=null
+    val time:String?=null,
+    val collectionName:String?=null
 )
