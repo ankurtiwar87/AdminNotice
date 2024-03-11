@@ -14,6 +14,12 @@
         android:theme="@style/Theme.Admin_notifycampus"
         tools:targetApi="31">
         <activity
+            android:name=".Years.YearActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Years.YearTemplate"
+            android:exported="false" />
+        <activity
             android:name=".Sessions.Session28"
             android:exported="false" />
         <activity

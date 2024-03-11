@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import com.ankur.admin_notifycampus.R
 import com.ankur.admin_notifycampus.Sessions.SessionTemplate
+import com.ankur.admin_notifycampus.Years.YearTemplate
 import com.ankur.admin_notifycampus.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
@@ -42,7 +43,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     startActivity(intent)
                 }
                 R.id.deleteFaculty->{
-                    val intent =Intent(this,SessionTemplate::class.java)
+                    val intent =Intent(this,YearTemplate::class.java)
                     startActivity(intent)
                 }
 
