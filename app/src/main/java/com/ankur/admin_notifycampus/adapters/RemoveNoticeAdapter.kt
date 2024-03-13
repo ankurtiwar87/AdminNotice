@@ -5,16 +5,22 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.ankur.admin_notifycampus.Models.NoticeModel
 import com.ankur.admin_notifycampus.R
 import com.ankur.admin_notifycampus.databinding.NoticeUiForDeleteBinding
 import com.bumptech.glide.Glide
 
-class RemoveNoticeAdapter(private val context: Context,private val list:ArrayList<NoticeModel>)
+class RemoveNoticeAdapter(private val context: Context, val list:ArrayList<NoticeModel>, private val collectionName: String)
     :RecyclerView.Adapter<RemoveNoticeAdapter.RemoveNoticeViewHolder>() {
     inner class RemoveNoticeViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
         val binding = NoticeUiForDeleteBinding.bind(itemView)
+    }
+
+    fun removeItem(position: Int) {
+        list.removeAt(position)
+        notifyItemRemoved(position)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RemoveNoticeViewHolder {
@@ -59,7 +65,6 @@ class RemoveNoticeAdapter(private val context: Context,private val list:ArrayLis
         }
 
         Glide.with(context).load(currentItem.imgUrl).into(holder.binding.image)
-
 
     }
 }
