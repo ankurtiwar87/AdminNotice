@@ -23,6 +23,11 @@ class RemoveNoticeAdapter(private val context: Context, val list:ArrayList<Notic
         notifyItemRemoved(position)
     }
 
+    fun restoreItem(item: NoticeModel, position: Int) {
+        list.add(position, item)
+        notifyItemInserted(position)
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RemoveNoticeViewHolder {
         return RemoveNoticeViewHolder(LayoutInflater.from(context).inflate(R.layout.notice_ui_for_delete,parent,false))
     }

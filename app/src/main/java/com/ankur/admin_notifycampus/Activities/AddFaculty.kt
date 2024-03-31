@@ -6,11 +6,15 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Environment
+import android.provider.MediaStore
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AlertDialog
+import androidx.core.content.FileProvider
 import androidx.lifecycle.lifecycleScope
 import com.ankur.admin_notifycampus.Models.FacultyModel
 import com.ankur.admin_notifycampus.R
@@ -22,6 +26,10 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
+import java.io.File
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 import java.util.UUID
 
 class AddFaculty : AppCompatActivity() {
@@ -62,11 +70,22 @@ class AddFaculty : AppCompatActivity() {
         dialog.setContentView(R.layout.progress_dialog)
         dialog.setCancelable(false)
 
-//        OnClick Gallery Open
+//        OnClick Gallery or Camera Open
         binding.FacultyImage.setOnClickListener {
-            val intent = Intent("android.intent.action.GET_CONTENT")
-            intent.type="image/*"
-            launchGalleyActivity.launch(intent)
+
+
+            val options = arrayOf("Open Gallery", "Take Photo")
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle("Choose an option")
+            builder.setItems(options) { dialog, which ->
+                when (which) {
+                    0 -> openGallery()
+                    1 -> openCamera()
+                }
+                dialog.dismiss()
+            }
+            builder.show()
+
         }
 
 
@@ -122,11 +141,56 @@ class AddFaculty : AppCompatActivity() {
 
     }
 
+    private fun openCamera() {
+        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        // Ensure that there's a camera app available
+        if (intent.resolveActivity(packageManager) != null) {
+            // Create a file to save the image
+            val photoFile: File? = createImageFile()
+            photoFile?.let {
+                coverImage = FileProvider.getUriForFile(this, "com.ankur.admin_notifycampus.provider", it)
+                intent.putExtra(MediaStore.EXTRA_OUTPUT, coverImage)
+                val REQUEST_IMAGE_CAPTURE=121
+                startActivityForResult(intent, REQUEST_IMAGE_CAPTURE)
+            }
+        } else {
+            Toast.makeText(this, "No camera app found", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun createImageFile(): File? {
+        // Create an image file name
+        val timeStamp: String = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
+        val storageDir: File? = getExternalFilesDir(Environment.DIRECTORY_PICTURES)
+        val imageFileName = "JPEG_${timeStamp}_"
+        return File.createTempFile(imageFileName, ".jpg", storageDir)
+
+    }
+
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        val REQUEST_IMAGE_CAPTURE=121
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == Activity.RESULT_OK) {
+            // Use the photoUri to set the image in the ImageView
+            coverImage?.let { uri ->
+                binding.FacultyImage.setImageURI(uri)
+            }
+        }
+    }
+
+    private fun openGallery() {
+        val intent = Intent("android.intent.action.GET_CONTENT")
+        intent.type="image/*"
+        launchGalleyActivity.launch(intent)
+    }
+
     private fun validateData() {
         val teacherName = binding.TeacherName.text.toString()
         val phoneNumber = binding.TeacherPhoneNumber.text.toString()
         val email = binding.email.text.toString()
         val cabin = binding.Cabin.text.toString()
+        val subject =binding.subject.text.toString()
 
         if (teacherName.isEmpty()){
             binding.TeacherName.error="Enter Name"
@@ -159,6 +223,12 @@ class AddFaculty : AppCompatActivity() {
             binding.Cabin.requestFocus()
             return
         }
+        if (subject.isEmpty()){
+            binding.subject.error="Enter Subject Name."
+            binding.subject.requestFocus()
+            return
+        }
+
         if (coverImage == null){
             Toast.makeText(this, "Select Image", Toast.LENGTH_SHORT).show()
         } else {
@@ -197,13 +267,14 @@ class AddFaculty : AppCompatActivity() {
 
         val data = FacultyModel(
             id,
-           name =  binding.TeacherName.text.toString(),
+            name =  binding.TeacherName.text.toString(),
             phoneNo = binding.TeacherPhoneNumber.text.toString(),
             email = binding.email.text.toString(),
             cabinNo = binding.Cabin.text.toString(),
             year = spinnerYear,
             block = spinnerBlock,
-            imageUrl = facultyImageUrl
+            imageUrl = facultyImageUrl,
+            subject = binding.subject.text.toString()
         )
 
 
@@ -220,6 +291,7 @@ class AddFaculty : AppCompatActivity() {
                 binding.email.text=null
                 binding.TeacherPhoneNumber.text=null
                 binding.Cabin.text=null
+                binding.subject.text=null
                 binding.spinner1.setSelection(0)
                 binding.spinner2.setSelection(0)
                 Toast.makeText(applicationContext,"Faculty Successfully added",Toast.LENGTH_SHORT).show()

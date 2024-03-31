@@ -3,6 +3,7 @@
     <string name="download_icon_description">Download</string>
 
     <string-array name="session">
+        <item>Everyone</item>
         <item>2019-2023</item>
         <item>2020-2024</item>
         <item>2021-2025</item>

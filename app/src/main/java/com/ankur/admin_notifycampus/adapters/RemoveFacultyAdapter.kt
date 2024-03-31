@@ -10,10 +10,20 @@ import com.ankur.admin_notifycampus.R
 import com.ankur.admin_notifycampus.databinding.FacultyUiForDeleteBinding
 import com.bumptech.glide.Glide
 
-class RemoveFacultyAdapter(private val context: Context,private val list :ArrayList<FacultyModel>):RecyclerView.Adapter<RemoveFacultyAdapter.RemoveFacultyViewHolder>() {
+class RemoveFacultyAdapter(private val context: Context, val list :ArrayList<FacultyModel>,private val collectionName: String):RecyclerView.Adapter<RemoveFacultyAdapter.RemoveFacultyViewHolder>() {
    inner class RemoveFacultyViewHolder(itemView:View):RecyclerView.ViewHolder(itemView) {
        val binding=FacultyUiForDeleteBinding.bind(itemView)
 
+    }
+
+    fun removeItem(position: Int) {
+        list.removeAt(position)
+        notifyItemRemoved(position)
+    }
+
+    fun restoreItem(item: FacultyModel, position: Int) {
+        list.add(position, item)
+        notifyItemInserted(position)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RemoveFacultyViewHolder {

@@ -6,6 +6,7 @@ data class FacultyModel(
     val name:String?=null,
     val phoneNo:String?=null,
     val cabinNo:String?=null,
+    val subject:String?=null,
     val email:String?=null,
     val imageUrl:String?=null,
     val year:String?=null,

@@ -4,13 +4,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.ItemTouchHelper
 import com.ankur.admin_notifycampus.Models.FacultyModel
-import com.ankur.admin_notifycampus.Models.NoticeModel
-import com.ankur.admin_notifycampus.R
 import com.ankur.admin_notifycampus.adapters.RemoveFacultyAdapter
-import com.ankur.admin_notifycampus.adapters.RemoveNoticeAdapter
+import com.ankur.admin_notifycampus.adapters.SwipeToDeleteCallback2
 import com.ankur.admin_notifycampus.databinding.ActivityYearBinding
-import com.ankur.admin_notifycampus.databinding.ActivityYearTemplateBinding
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.Dispatchers
@@ -51,7 +49,11 @@ class YearActivity : AppCompatActivity() {
                 }
 
             withContext(Dispatchers.Main){
-                binding.recyclerView.adapter=RemoveFacultyAdapter(this@YearActivity,list)
+                val adapter = RemoveFacultyAdapter(this@YearActivity,list,collection)
+                binding.recyclerView.adapter=adapter
+                val swipeToDeleteCallback = SwipeToDeleteCallback2(adapter, collection,binding.recyclerView)
+                val itemTouchHelper = ItemTouchHelper(swipeToDeleteCallback)
+                itemTouchHelper.attachToRecyclerView(binding.recyclerView)
             }
         }
     }

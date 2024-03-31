@@ -129,6 +129,8 @@ private val chooseFileButton by lazy { findViewById<Button>(R.id.chooseFileButto
             }
             builder.show()
         }
+
+
         binding.chooseFileButton.setOnClickListener{
             val intent = Intent(Intent.ACTION_GET_CONTENT)
             intent.type = "*/*" // Allow all file types

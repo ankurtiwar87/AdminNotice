@@ -46,7 +46,7 @@ class Session : AppCompatActivity() {
             withContext(Dispatchers.Main) {
                 val adapter = RemoveNoticeAdapter(this@Session, list, collection)
                 binding.recyclerView.adapter = adapter
-                val swipeToDeleteCallback = SwipeToDeleteCallback(adapter, collection)
+                val swipeToDeleteCallback = SwipeToDeleteCallback(adapter, collection,binding.recyclerView)
                 val itemTouchHelper = ItemTouchHelper(swipeToDeleteCallback)
                 itemTouchHelper.attachToRecyclerView(binding.recyclerView)            }
         }

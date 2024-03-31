@@ -1,22 +1,17 @@
 package com.ankur.admin_notifycampus.adapters
 
-import androidx.lifecycle.LifecycleCoroutineScope
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
+import com.ankur.admin_notifycampus.R
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
-import kotlinx.coroutines.withContext
 
-import android.view.View
-import androidx.core.content.ContextCompat
-import com.ankur.admin_notifycampus.R
-import com.google.android.material.snackbar.Snackbar
-
-class SwipeToDeleteCallback(private val adapter: RemoveNoticeAdapter, private val collectionName: String, private val recyclerView: RecyclerView
+class SwipeToDeleteCallback2(private val adapter: RemoveFacultyAdapter, private val collectionName: String, private val recyclerView: RecyclerView
 ) : ItemTouchHelper.SimpleCallback(
     0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
 ) {
@@ -38,11 +33,15 @@ class SwipeToDeleteCallback(private val adapter: RemoveNoticeAdapter, private va
         val itemsCollection = db.collection(collectionName)
 
         val snackbar = Snackbar.make(recyclerView, "Item deleted", Snackbar.LENGTH_LONG).apply {
+
+//  Action of undo
             setAction("Undo") {
                 adapter.restoreItem(currentItem, position)
                 recyclerView.scrollToPosition(position)
             }
             setActionTextColor(ContextCompat.getColor(recyclerView.context, R.color.color3)) // Change color to your theme color
+
+//            Action if not clicked on Undo
             addCallback(object : Snackbar.Callback() {
                 override fun onDismissed(transientBottomBar: Snackbar?, event: Int) {
                     if (event != DISMISS_EVENT_ACTION) {
