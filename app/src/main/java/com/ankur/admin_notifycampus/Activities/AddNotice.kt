@@ -11,6 +11,7 @@ import android.os.Environment
 import android.provider.MediaStore
 import android.provider.OpenableColumns
 import android.view.View
+import android.webkit.MimeTypeMap
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
@@ -275,15 +276,47 @@ private val chooseFileButton by lazy { findViewById<Button>(R.id.chooseFileButto
         }
     }
 
-    private fun uploadFile(uri: Uri) {
+//    private fun uploadFile(uri: Uri) {
+//
+//        dialog.show()
+//
+//        // Generate a unique file name (you can modify this logic as needed)
+//        val fileName = getFileNameFromUri(uri)+"${System.currentTimeMillis()}" // Get the original file name from the URI
+//
+////        val fileName = "file_${System.currentTimeMillis()}"
+//        val fileRef = storageRef.child("Documents").child(fileName)
+//
+//        // Upload the file to Firebase Storage
+//        val uploadTask = fileRef.putFile(uri)
+//
+//        // Listen for state changes, errors, and completion of the upload
+//        uploadTask.addOnSuccessListener { taskSnapshot ->
+//            // Upload successful
+//            taskSnapshot.metadata?.reference?.downloadUrl?.addOnSuccessListener{
+//                docUrl=it.toString()
+//
+//            }
+//            dialog.dismiss()
+//            binding.chooseFileButton.text="$fileName"
+//            // Handle the download URL as needed
+//        }.addOnFailureListener { exception ->
+//            // Handle unsuccessful uploads
+//            Toast.makeText(this, "Doc not Uploaded", Toast.LENGTH_SHORT).show()
+//            dialog.dismiss()
+//        }
+//    }
 
+    private fun uploadFile(uri: Uri) {
         dialog.show()
 
-        // Generate a unique file name (you can modify this logic as needed)
-        val fileName = getFileNameFromUri(uri)+"${System.currentTimeMillis()}" // Get the original file name from the URI
+        // Get the original file name and extension from the URI
+        val fileName = getFileNameFromUri(uri)
+        val extension = getFileExtensionFromUri(uri)
 
-//        val fileName = "file_${System.currentTimeMillis()}"
-        val fileRef = storageRef.child("Documents").child(fileName)
+        // Generate a unique file name by appending the current timestamp and original extension
+        val uniqueFileName = "${fileName}_${System.currentTimeMillis()}.$extension"
+        Toast.makeText(this, "file name $uniqueFileName", Toast.LENGTH_SHORT).show()
+        val fileRef = storageRef.child("Documents").child(uniqueFileName)
 
         // Upload the file to Firebase Storage
         val uploadTask = fileRef.putFile(uri)
@@ -293,16 +326,20 @@ private val chooseFileButton by lazy { findViewById<Button>(R.id.chooseFileButto
             // Upload successful
             taskSnapshot.metadata?.reference?.downloadUrl?.addOnSuccessListener{
                 docUrl=it.toString()
-
             }
             dialog.dismiss()
-            binding.chooseFileButton.text="$fileName Uploaded"
+            binding.chooseFileButton.text = uniqueFileName
             // Handle the download URL as needed
         }.addOnFailureListener { exception ->
             // Handle unsuccessful uploads
             Toast.makeText(this, "Doc not Uploaded", Toast.LENGTH_SHORT).show()
             dialog.dismiss()
         }
+    }
+
+    // Function to get the file extension from the URI
+    private fun getFileExtensionFromUri(uri: Uri): String {
+        return MimeTypeMap.getFileExtensionFromUrl(uri.toString()) ?: ""
     }
 
     @SuppressLint("Range")

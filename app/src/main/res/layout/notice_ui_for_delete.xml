@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/_10sdp"
+    android:layout_margin="@dimen/_5sdp"
     >
 
     <com.google.android.material.card.MaterialCardView
@@ -11,9 +11,10 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="vertical"
-        android:elevation="@dimen/_15sdp"
+        android:elevation="@dimen/_5sdp"
         android:backgroundTint="@color/white2"
-        app:cardCornerRadius="@dimen/_15sdp"
+        app:cardCornerRadius="@dimen/_5sdp"
+        android:padding="@dimen/_10sdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -37,7 +38,7 @@
             <TextView
                 android:id="@+id/Title"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/_50sdp"
+                android:layout_height="wrap_content"
                 android:layout_margin="@dimen/_5sdp"
                 android:gravity="start"
                 android:padding="@dimen/_5sdp"
@@ -77,6 +78,15 @@
 
                 <!-- Date TextView -->
                 <TextView
+                    android:id="@+id/textDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Date: "
+                    android:textSize="18sp"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:textColor="@color/lightGrey"
+                    android:textStyle="bold" />
+                <TextView
                     android:id="@+id/dateTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -87,6 +97,16 @@
                     android:textStyle="bold" />
 
                 <!-- Time TextView -->
+                <TextView
+                    android:id="@+id/textTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Time: "
+                    android:gravity="end"
+                    android:textColor="@color/lightGrey"
+                    android:textSize="18sp"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:textStyle="bold" />
                 <TextView
                     android:id="@+id/timeTextView"
                     android:layout_width="wrap_content"
@@ -130,7 +150,7 @@
                     android:elevation="@dimen/_5sdp"
                     android:gravity="center"
                     android:text="See More"
-                    android:textColor="@color/purple_500"
+                    android:textColor="@color/color_primary"
                     android:textSize="@dimen/_12sdp"
                     android:textStyle="bold" />
 
