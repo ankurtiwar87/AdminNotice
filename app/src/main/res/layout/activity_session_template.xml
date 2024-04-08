@@ -7,24 +7,33 @@
     android:background="@drawable/hemisphere2"
     tools:context=".Sessions.SessionTemplate">
 
+    <View
+        android:id="@+id/top_view"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@drawable/bg_new"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
     <!-- activity_dashboard.xml -->
+
     <GridLayout
         android:id="@+id/gridLayout"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_width="357dp"
+        android:layout_height="550dp"
         android:alignmentMode="alignMargins"
         android:columnCount="2"
         android:columnOrderPreserved="false"
         android:orientation="horizontal"
         android:padding="16dp"
         android:rowCount="3"
-        app:layout_constraintBottom_toTopOf="@+id/cardView7"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.5">
+        app:layout_constraintVertical_bias="0.767">
 
         <!-- CardView 1 -->
         <androidx.cardview.widget.CardView
@@ -35,10 +44,13 @@
             android:layout_columnWeight="1"
             android:layout_margin="8dp"
             android:backgroundTint="@color/white2"
+            android:backgroundTintMode="multiply"
             android:elevation="4dp"
             android:padding="16dp"
             android:radius="8dp"
-            app:cardCornerRadius="@dimen/_15sdp">
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="@dimen/_15sdp"
+            app:cardElevation="50dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -49,7 +61,7 @@
                     android:layout_height="0dp"
                     android:gravity="center"
                     android:text="2019-2023"
-                    android:textColor="@color/textColor"
+                    android:textColor="@color/black"
                     android:textSize="@dimen/_17sdp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -72,11 +84,14 @@
             android:layout_columnWeight="1"
             android:layout_margin="8dp"
             android:backgroundTint="@color/white2"
+            android:backgroundTintMode="multiply"
             android:elevation="4dp"
             android:foreground="?android:attr/selectableItemBackground"
             android:padding="16dp"
             android:radius="8dp"
-            app:cardCornerRadius="@dimen/_15sdp">
+            app:cardBackgroundColor="#C3E0E5"
+            app:cardCornerRadius="@dimen/_15sdp"
+            app:cardElevation="50dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -87,7 +102,7 @@
                     android:layout_height="0dp"
                     android:gravity="center"
                     android:text="2020-2024"
-                    android:textColor="@color/textColor"
+                    android:textColor="@color/black"
                     android:textSize="@dimen/_17sdp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -109,11 +124,14 @@
             android:layout_columnWeight="1"
             android:layout_margin="8dp"
             android:backgroundTint="@color/white2"
+            android:backgroundTintMode="multiply"
             android:elevation="4dp"
             android:foreground="?android:attr/selectableItemBackground"
             android:padding="16dp"
             android:radius="8dp"
-            app:cardCornerRadius="@dimen/_15sdp">
+            app:cardBackgroundColor="#C3E0E5"
+            app:cardCornerRadius="@dimen/_15sdp"
+            app:cardElevation="50dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -124,7 +142,7 @@
                     android:layout_height="0dp"
                     android:gravity="center"
                     android:text="2021-2025"
-                    android:textColor="@color/textColor"
+                    android:textColor="@color/black"
                     android:textSize="@dimen/_17sdp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -146,11 +164,14 @@
             android:layout_columnWeight="1"
             android:layout_margin="8dp"
             android:backgroundTint="@color/white2"
+            android:backgroundTintMode="multiply"
             android:elevation="4dp"
             android:foreground="?android:attr/selectableItemBackground"
             android:padding="16dp"
             android:radius="8dp"
-            app:cardCornerRadius="@dimen/_15sdp">
+            app:cardBackgroundColor="#C3E0E5"
+            app:cardCornerRadius="@dimen/_15sdp"
+            app:cardElevation="50dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -161,7 +182,7 @@
                     android:layout_height="0dp"
                     android:gravity="center"
                     android:text="2022-2026"
-                    android:textColor="@color/textColor"
+                    android:textColor="@color/black"
                     android:textSize="@dimen/_17sdp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -182,11 +203,14 @@
             android:layout_columnWeight="1"
             android:layout_margin="8dp"
             android:backgroundTint="@color/white2"
+            android:backgroundTintMode="multiply"
             android:elevation="4dp"
             android:foreground="?android:attr/selectableItemBackground"
             android:padding="16dp"
             android:radius="8dp"
-            app:cardCornerRadius="@dimen/_15sdp">
+            app:cardBackgroundColor="#C3E0E5"
+            app:cardCornerRadius="@dimen/_15sdp"
+            app:cardElevation="50dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -197,7 +221,7 @@
                     android:layout_height="0dp"
                     android:gravity="center"
                     android:text="2023-2027"
-                    android:textColor="@color/textColor"
+                    android:textColor="@color/black"
                     android:textSize="@dimen/_17sdp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -218,11 +242,14 @@
             android:layout_columnWeight="1"
             android:layout_margin="8dp"
             android:backgroundTint="@color/white2"
+            android:backgroundTintMode="multiply"
             android:elevation="4dp"
             android:foreground="?android:attr/selectableItemBackground"
             android:padding="16dp"
             android:radius="8dp"
-            app:cardCornerRadius="@dimen/_15sdp">
+            app:cardBackgroundColor="#C3E0E5"
+            app:cardCornerRadius="@dimen/_15sdp"
+            app:cardElevation="50dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -233,7 +260,7 @@
                     android:layout_height="0dp"
                     android:gravity="center"
                     android:text="2024-2028"
-                    android:textColor="@color/textColor"
+                    android:textColor="@color/black"
                     android:textSize="@dimen/_17sdp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -248,47 +275,47 @@
 
     </GridLayout>
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView7"
-        android:layout_width="@dimen/_150sdp"
-        android:layout_height="@dimen/_100sdp"
-        android:layout_rowWeight="1"
-        android:layout_columnWeight="1"
-        android:layout_marginLeft="100dp"
-        android:layout_marginRight="100dp"
-        android:layout_marginBottom="@dimen/_10sdp"
-        android:backgroundTint="@color/white2"
-        android:elevation="4dp"
-        android:padding="16dp"
-        android:radius="8dp"
-        app:cardCornerRadius="@dimen/_15sdp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent">
+    <!--    <androidx.cardview.widget.CardView-->
+<!--        android:id="@+id/cardView7"-->
+<!--        android:layout_width="@dimen/_150sdp"-->
+<!--        android:layout_height="@dimen/_100sdp"-->
+<!--        android:layout_rowWeight="1"-->
+<!--        android:layout_columnWeight="1"-->
+<!--        android:layout_marginLeft="100dp"-->
+<!--        android:layout_marginRight="100dp"-->
+<!--        android:backgroundTint="@color/white2"-->
+<!--        android:elevation="4dp"-->
+<!--        android:padding="16dp"-->
+<!--        android:radius="8dp"-->
+<!--        app:cardCornerRadius="@dimen/_15sdp"-->
+<!--        app:cardElevation="50dp"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.5"-->
+<!--        app:layout_constraintStart_toStartOf="parent">-->
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent">-->
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:gravity="center"
-                android:text="Everyone"
-                android:textColor="@color/textColor"
-                android:textSize="@dimen/_17sdp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.5" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-        <!-- Your CardView content here -->
+<!--            <TextView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="0dp"-->
+<!--                android:gravity="center"-->
+<!--                android:text="Everyone"-->
+<!--                android:textColor="@color/textColor"-->
+<!--                android:textSize="@dimen/_17sdp"-->
+<!--                android:textStyle="bold"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintHorizontal_bias="0.5"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent"-->
+<!--                app:layout_constraintVertical_bias="0.5" />-->
+<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
+<!--        &lt;!&ndash; Your CardView content here &ndash;&gt;-->
 
-    </androidx.cardview.widget.CardView>
+<!--    </androidx.cardview.widget.CardView>-->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
