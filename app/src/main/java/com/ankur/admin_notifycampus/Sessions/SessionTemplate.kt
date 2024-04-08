@@ -21,7 +21,7 @@ class SessionTemplate : AppCompatActivity(),OnClickListener{
         binding.cardView4.setOnClickListener(this)
         binding.cardView5.setOnClickListener(this)
         binding.cardView6.setOnClickListener(this)
-        binding.cardView7.setOnClickListener(this)
+//        binding.cardView7.setOnClickListener(this)
 
     }
 
@@ -62,12 +62,12 @@ class SessionTemplate : AppCompatActivity(),OnClickListener{
                     i.putExtra("session","2024-2028")
                     startActivity(i)
                 }
-                R.id.cardView7->{
-
-                    val i =Intent(this,Session::class.java)
-                    i.putExtra("session","everyone")
-                    startActivity(i)
-                }
+//                R.id.cardView7->{
+//
+//                    val i =Intent(this,Session::class.java)
+//                    i.putExtra("session","everyone")
+//                    startActivity(i)
+//                }
             }
         }
     }

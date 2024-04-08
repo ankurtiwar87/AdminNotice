@@ -44,6 +44,7 @@ class RemoveFacultyAdapter(private val context: Context, val list :ArrayList<Fac
         holder.binding.Cabin.text=currentItem.cabinNo
         holder.binding.block.text=currentItem.block
         holder.binding.Year.text=currentItem.year
+        holder.binding.subject.text=currentItem.subject
     }
 
 
